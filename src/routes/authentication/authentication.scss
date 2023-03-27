@@ -1,0 +1,9 @@
+.authentication-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    .sign-in-container, .sign-up-container {
+        margin: 0 5rem;
+    }
+}
