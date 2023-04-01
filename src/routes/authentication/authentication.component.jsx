@@ -5,11 +5,6 @@ import './authentication.scss';
 
 const Authentication = () => {
 
-    const logGoogleUser = async () => {
-        const { user } = await signInWithGooglePopup();
-        const userDocRef = await createUserDocumentFromAuth(user);
-    };
-
     return (
         <div>
             <div className='authentication-container'>

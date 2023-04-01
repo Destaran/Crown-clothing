@@ -5,7 +5,9 @@ import {
     signInWithPopup,
     GoogleAuthProvider,
     createUserWithEmailAndPassword,
-    signInWithEmailAndPassword
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged
     
 } from 'firebase/auth';
 import {
@@ -30,7 +32,7 @@ const firebaseConfig = {
 
 const firebaseApp = initializeApp(firebaseConfig);
 
-// Google Popup Sign-in Setup
+// Sign-in Setup
 
 export const auth = getAuth();
 
@@ -72,7 +74,7 @@ export const createUserDocumentFromAuth = async (
                 ...additionalInformation,
             });
         } catch (error) {
-            console.log('error reating the user', error.message);
+            console.log('error creating the user', error.message);
         }
     }
 
@@ -89,4 +91,12 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
     if (!email || !password) return;
 
     return await signInWithEmailAndPassword(auth, email, password);
+}
+
+export const signOutAuthUser = async () => {
+    await signOut(auth);
+}
+
+export const onAuthStateChangedListener = (callback) => {
+    onAuthStateChanged(auth, callback);
 }

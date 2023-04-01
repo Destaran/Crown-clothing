@@ -32,8 +32,7 @@ const SignUpForm = () => {
 
         try {
             const { user } = await createAuthUserWithEmailAndPassword(email, password);
-
-            await createUserDocumentFromAuth(user, { displayName })
+            await createUserDocumentFromAuth(user, { displayName });
             resetFormFields();
         } catch (error) {
             if(error.code == 'auth/email-already-in-use') {
@@ -73,7 +72,7 @@ const SignUpForm = () => {
                 <FormInput
                     label='Password' 
                     required 
-                    type="text" 
+                    type="password" 
                     onChange={handleChange} 
                     name='password' 
                     value={password} 
@@ -81,7 +80,7 @@ const SignUpForm = () => {
                 <FormInput
                     label='Confirm Password' 
                     required 
-                    type="text" 
+                    type="password" 
                     onChange={handleChange} 
                     name='confirmPassword' 
                     value={confirmPassword} 
