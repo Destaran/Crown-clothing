@@ -8,7 +8,7 @@ import CrwnLogo from '../../assets/crown.svg';
 import CartIcon from '../../Components/cart-icon/CartIcon.component';
 import CartDropdown from '../../Components/cart-dropdown/CartDropdown.component';
 
-import './navigation.styles.scss';
+import {NavigationContainer, LogoContainer, NavLink, NavLinks } from './navigation.styles.jsx';
 
 import {signOutAuthUser} from '../../utils/firebase/firebase.utils';
 
@@ -18,27 +18,27 @@ const Navigation = () => {
 
     return (
         <Fragment>
-            <div className='navigation'>
-                <Link className='logo-container' to='/'>
+            <NavigationContainer>
+                <LogoContainer to='/'>
                     <img src={CrwnLogo} className='logo' />
-                </Link>
-                <div className='nav-links-container'>
-                    <Link className='nav-link' to='/shop'>
+                </LogoContainer>
+                <NavLinks>
+                    <NavLink to='/shop'>
                         SHOP
-                    </Link>
+                    </NavLink>
                     {currentUser ? (
-                        <span className='nav-link' onClick={signOutAuthUser}>
+                        <NavLink as='span' onClick={signOutAuthUser}>
                             SIGN OUT
-                        </span>
+                        </NavLink>
                     ) : (
-                        <Link className='nav-link' to='/auth'>
+                        <NavLink to='/auth'>
                             SIGN IN
-                        </Link>
+                        </NavLink>
                     )}
                     <CartIcon />
-                </div>
+                </NavLinks>
                 {showCart && <CartDropdown />}
-            </div>
+            </NavigationContainer>
             <Outlet />
         </Fragment>
     );
